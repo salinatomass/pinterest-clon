@@ -1,24 +1,36 @@
-export interface CardInterface {
+export interface Photo {
   id: number
-  title: string
-  username: string
-  image: string
+  width: number
+  height: number
+  src: {
+    medium: string
+    small: string
+  }
+  alt: string
+  photographer: string
+  avg_color: string
 }
 
 interface CardProps {
-  data: CardInterface
+  data: Photo
 }
 
 export const Card = ({ data }: CardProps) => {
   return (
-    <article className="w-full h-fit bg-red-200 rounded-lg">
-      <figure className="rounded-lg overflow-hidden">
-        <img src={data.image} alt="" />
+    <article className="w-full h-fit rounded-lg">
+      <figure
+        className="rounded-xl"
+        style={{ backgroundColor: data.avg_color }}
+      >
+        <img
+          className="w-full object-cover rounded-xl"
+          src={data.src.medium}
+          alt={data.alt}
+        />
       </figure>
-      <div className="p-2 space-y-2">
-        <h4 className="text-xl">Gradient 1</h4>
-        <p className="text-sm">Usuario: salinatomass</p>
-      </div>
+      <h4 className="p-2 space-y-2 text-sm font-semibold">
+        {data.photographer}
+      </h4>
     </article>
   )
 }

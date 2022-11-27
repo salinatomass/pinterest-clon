@@ -27,7 +27,7 @@ export const Header = () => {
           placeholder="Search"
         />
       </div>
-      <div className="flex items-center ">
+      <div className="flex items-center">
         <button className="w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
           <NotificationIcon className="w-7 h-7 text-gray-500" />
         </button>

@@ -28,6 +28,8 @@ export const usePhotos = () => {
   const { ref, inView } = useInView({ rootMargin: '200px' })
 
   const loadPhotos = async () => {
+    if (!photos.nextPage) return
+
     try {
       setPhotos(prevState => ({ ...prevState, loading: true }))
 
@@ -40,7 +42,7 @@ export const usePhotos = () => {
       setPhotos(prevState => ({
         loading: false,
         list: [...prevState.list, ...data.photos],
-        nextPage: data.next_page || API_URL,
+        nextPage: data.next_page || '',
         error: '',
       }))
     } catch (err: any) {
@@ -52,8 +54,12 @@ export const usePhotos = () => {
     }
   }
 
+  const reset = () => {
+    setPhotos(initialPhotosState)
+  }
+
   const searchPhotos = async (query: string) => {
-    if (!query) return setPhotos(initialPhotosState)
+    if (!query) return reset()
 
     try {
       setPhotos(prevState => ({ ...prevState, loading: true }))
@@ -65,12 +71,20 @@ export const usePhotos = () => {
         perPage: DEFAULT_PER_PAGE,
       })
 
-      setPhotos({
-        loading: false,
-        list: data.photos,
-        nextPage: data.next_page || API_URL,
-        error: '',
-      })
+      if (data.photos.length === 0)
+        setPhotos({
+          loading: false,
+          list: [],
+          nextPage: initialPhotosState.nextPage,
+          error: "We couldn't find any Pins for this search.",
+        })
+      else
+        setPhotos({
+          loading: false,
+          list: data.photos,
+          nextPage: data.next_page || API_URL,
+          error: '',
+        })
     } catch (err: any) {
       setPhotos(prevState => ({
         ...prevState,
@@ -84,5 +98,5 @@ export const usePhotos = () => {
     if (inView) loadPhotos()
   }, [inView])
 
-  return { photos, triggerRef: ref, searchPhotos }
+  return { photos, triggerRef: ref, searchPhotos, reset }
 }

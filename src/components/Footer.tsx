@@ -4,6 +4,15 @@ interface FooterProps {
 }
 
 export const Footer = ({ error, triggerRef }: FooterProps) => {
+  const exception = "We couldn't find any Pins for this search."
+
+  if (error === exception)
+    return (
+      <footer className="w-full h-5 flex justify-center pt-10">
+        <p className="text-lg">{error} Please try again.</p>
+      </footer>
+    )
+
   return (
     <footer className="w-full h-5 flex justify-center pt-10" ref={triggerRef}>
       {error && (

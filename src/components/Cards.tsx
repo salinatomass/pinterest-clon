@@ -24,31 +24,31 @@ export const Cards = ({ list, loading }: CardsProps) => {
             {firstColumnList.map(ph => (
               <Card key={ph.id} data={ph} />
             ))}
-            {loading && loaders.map(l => <LoadingCard key={l} />)}
+            {loading && loaders.map(id => <LoadingCard key={id} />)}
           </div>
           <div className="flex flex-col gap-7">
             {secondColumnList.map(ph => (
               <Card key={ph.id} data={ph} />
             ))}
-            {loading && loaders.map(l => <LoadingCard key={l} />)}
+            {loading && loaders.map(id => <LoadingCard key={id} />)}
           </div>
           <div className="flex flex-col gap-7">
             {thirdColumnList.map(ph => (
               <Card key={ph.id} data={ph} />
             ))}
-            {loading && loaders.map(l => <LoadingCard key={l} />)}
+            {loading && loaders.map(id => <LoadingCard key={id} />)}
           </div>
           <div className="flex flex-col gap-7">
             {fourthColumnList.map(ph => (
               <Card key={ph.id} data={ph} />
             ))}
-            {loading && loaders.map(l => <LoadingCard key={l} />)}
+            {loading && loaders.map(id => <LoadingCard key={id} />)}
           </div>
           <div className="flex flex-col gap-7">
             {fifthColumnList.map(ph => (
               <Card key={ph.id} data={ph} />
             ))}
-            {loading && loaders.map(l => <LoadingCard key={l} />)}
+            {loading && loaders.map(id => <LoadingCard key={id} />)}
           </div>
         </>
       )}

@@ -7,11 +7,14 @@ import { Cards } from './components/Cards'
 import { getData } from './utils/getData'
 
 import { PhotoApiResponse } from './components/type'
+import { LoadingCard } from './components/LoadingCard'
+import { BiLoaderAlt as Loader } from 'react-icons/bi'
 
 interface PhotosState {
   loading: boolean
   list: PhotoApiResponse['photos']
   nextPage: PhotoApiResponse['next_page']
+  error: string
 }
 
 const API_URL = 'https://api.pexels.com/v1/curated'
@@ -22,20 +25,30 @@ function App() {
     loading: true,
     list: [],
     nextPage: API_URL,
+    error: '',
   })
 
   const { ref, inView } = useInView({ rootMargin: '200px' })
 
   const loadPhotos = async () => {
-    setPhotos(prevState => ({ ...prevState, loading: true }))
+    try {
+      setPhotos(prevState => ({ ...prevState, loading: true }))
 
-    const data = await getData({ uri: photos.nextPage, apiKey: API_KEY })
+      const data = await getData({ uri: photos.nextPage, apiKey: API_KEY })
 
-    setPhotos(prev => ({
-      loading: false,
-      list: [...prev.list, ...data.photos],
-      nextPage: data.next_page || API_URL,
-    }))
+      setPhotos(prevState => ({
+        loading: false,
+        list: [...prevState.list, ...data.photos],
+        nextPage: data.next_page || API_URL,
+        error: '',
+      }))
+    } catch (err: any) {
+      setPhotos(prevState => ({
+        ...prevState,
+        loading: false,
+        error: err.message,
+      }))
+    }
   }
 
   useEffect(() => {
@@ -46,7 +59,14 @@ function App() {
     <div className="w-screen h-screen">
       <Header />
       <Cards list={photos.list} loading={photos.loading} />
-      <footer className="w-full h-5" ref={ref}></footer>
+      <footer className="w-full h-5 flex justify-center pt-10" ref={ref}>
+        {photos.loading && <Loader className="w-10 h-10 animate-spin" />}
+        {photos.error && (
+          <p className="text-lg">
+            We are having problems, please try again later.
+          </p>
+        )}
+      </footer>
     </div>
   )
 }

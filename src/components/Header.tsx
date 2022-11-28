@@ -1,10 +1,21 @@
+import { debounce } from 'lodash'
 import { Logo } from './Icons'
+
 import { BiSearch as SearchIcon } from 'react-icons/bi'
 import { IoNotificationsSharp as NotificationIcon } from 'react-icons/io5'
 import { AiFillMessage as MessageIcon } from 'react-icons/ai'
 import { BsChevronDown as Chevron } from 'react-icons/bs'
 
-export const Header = () => {
+interface HeaderProps {
+  onSearch: (q: string) => void
+}
+
+export const Header = ({ onSearch }: HeaderProps) => {
+  const handleSearch = debounce(e => {
+    const query = e.target.value
+    onSearch(query)
+  }, 1500)
+
   return (
     <header className="max-w-7xl w-full m-auto flex items-center justify-between py-4 px-6">
       <div className="h-fit flex items-center">
@@ -25,6 +36,7 @@ export const Header = () => {
           type="search"
           name="search"
           placeholder="Search"
+          onChange={handleSearch}
         />
       </div>
       <div className="flex items-center">

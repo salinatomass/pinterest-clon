@@ -12,7 +12,7 @@ function App() {
   const { list, loading, error } = photos
 
   return (
-    <div className="w-screen h-screen">
+    <div className="w-full h-screen">
       <Header onSearch={q => searchPhotos(q)} />
       <Loader loading={loading} />
       <Cards list={list} loading={loading} />

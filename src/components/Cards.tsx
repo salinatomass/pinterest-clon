@@ -17,7 +17,7 @@ export const Cards = ({ list, loading }: CardsProps) => {
   const loaders = [1, 2, 3, 4, 5, 6]
 
   return (
-    <main className="max-w-7xl w-full m-auto grid grid-cols-5 gap-x-5 px-6">
+    <main className="max-w-7xl w-screen m-auto grid grid-cols-5 gap-x-5 px-6">
       {list.length > 0 && (
         <>
           <div className="flex flex-col gap-7">

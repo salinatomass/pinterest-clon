@@ -6,7 +6,7 @@ import { BsChevronDown as Chevron } from 'react-icons/bs'
 
 export const Header = () => {
   return (
-    <header className="flex items-center justify-between py-4 px-6">
+    <header className="max-w-7xl w-full m-auto flex items-center justify-between py-4 px-6">
       <div className="h-fit flex items-center">
         <figure className="w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
           <Logo />

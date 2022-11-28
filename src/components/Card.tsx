@@ -1,15 +1,4 @@
-export interface Photo {
-  id: number
-  width: number
-  height: number
-  src: {
-    medium: string
-    small: string
-  }
-  alt: string
-  photographer: string
-  avg_color: string
-}
+import { Photo } from './type'
 
 interface CardProps {
   data: Photo
@@ -18,10 +7,7 @@ interface CardProps {
 export const Card = ({ data }: CardProps) => {
   return (
     <article className="w-full h-fit rounded-lg">
-      <figure
-        className="rounded-xl"
-        style={{ backgroundColor: data.avg_color }}
-      >
+      <figure>
         <img
           className="w-full object-cover rounded-xl"
           src={data.src.medium}

@@ -24,7 +24,7 @@ function App() {
     nextPage: API_URL,
   })
 
-  const { ref, inView } = useInView({ rootMargin: '250px' })
+  const { ref, inView } = useInView({ rootMargin: '200px' })
 
   const loadPhotos = async () => {
     setPhotos(prevState => ({ ...prevState, loading: true }))

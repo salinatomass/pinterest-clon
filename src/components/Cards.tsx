@@ -1,4 +1,5 @@
 import { Card } from './Card'
+import { LoadingCard } from './LoadingCard'
 import { Photo } from './type'
 
 interface CardsProps {
@@ -13,6 +14,8 @@ export const Cards = ({ list, loading }: CardsProps) => {
   const fourthColumnList = list.filter((ph, i) => (i - 3) % 5 === 0)
   const fifthColumnList = list.filter((ph, i) => (i - 4) % 5 === 0)
 
+  const loaders = [1, 2, 3, 4, 5, 6]
+
   return (
     <main className="max-w-7xl w-full m-auto grid grid-cols-5 gap-x-5 px-6">
       {list.length > 0 && (
@@ -21,27 +24,31 @@ export const Cards = ({ list, loading }: CardsProps) => {
             {firstColumnList.map(ph => (
               <Card key={ph.id} data={ph} />
             ))}
-            {loading && <p>Loading...</p>}
+            {loading && loaders.map(l => <LoadingCard key={l} />)}
           </div>
           <div className="flex flex-col gap-7">
             {secondColumnList.map(ph => (
               <Card key={ph.id} data={ph} />
             ))}
+            {loading && loaders.map(l => <LoadingCard key={l} />)}
           </div>
           <div className="flex flex-col gap-7">
             {thirdColumnList.map(ph => (
               <Card key={ph.id} data={ph} />
             ))}
+            {loading && loaders.map(l => <LoadingCard key={l} />)}
           </div>
           <div className="flex flex-col gap-7">
             {fourthColumnList.map(ph => (
               <Card key={ph.id} data={ph} />
             ))}
+            {loading && loaders.map(l => <LoadingCard key={l} />)}
           </div>
           <div className="flex flex-col gap-7">
             {fifthColumnList.map(ph => (
               <Card key={ph.id} data={ph} />
             ))}
+            {loading && loaders.map(l => <LoadingCard key={l} />)}
           </div>
         </>
       )}

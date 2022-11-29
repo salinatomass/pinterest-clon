@@ -3,11 +3,13 @@ export interface Photo {
   width: number
   height: number
   src: {
+    original: string
     medium: string
     small: string
   }
   alt: string
   photographer: string
+  photographer_url: string
   avg_color: string
 }
 

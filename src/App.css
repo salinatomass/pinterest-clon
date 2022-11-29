@@ -1,0 +1,3 @@
+.card-image:hover .hidden {
+  display: flex;
+}

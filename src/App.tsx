@@ -6,6 +6,8 @@ import { Cards } from './components/Cards'
 import { Footer } from './components/Footer'
 import { Loader } from './components/Loader'
 
+import { Toaster } from 'react-hot-toast'
+
 function App() {
   const { photos, triggerRef, searchPhotos } = usePhotos()
 
@@ -17,6 +19,7 @@ function App() {
       <Loader loading={loading} />
       <Cards list={list} loading={loading} />
       <Footer error={error} triggerRef={triggerRef} />
+      <Toaster />
     </div>
   )
 }

@@ -9,13 +9,13 @@ import { Loader } from './components/Loader'
 import { Toaster } from 'react-hot-toast'
 
 function App() {
-  const { photos, triggerRef, searchPhotos } = usePhotos()
+  const { photos, triggerRef, searchPhotos, reset } = usePhotos()
 
   const { list, loading, error } = photos
 
   return (
     <div className="w-full h-screen">
-      <Header onSearch={q => searchPhotos(q)} />
+      <Header onSearch={q => searchPhotos(q)} onReset={reset} />
       <Loader loading={loading} />
       <Cards list={list} loading={loading} />
       <Footer error={error} triggerRef={triggerRef} />

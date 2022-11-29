@@ -8,9 +8,10 @@ import { BsChevronDown as Chevron } from 'react-icons/bs'
 
 interface HeaderProps {
   onSearch: (q: string) => void
+  onReset: () => void
 }
 
-export const Header = ({ onSearch }: HeaderProps) => {
+export const Header = ({ onSearch, onReset }: HeaderProps) => {
   const handleSearch = debounce(e => {
     const query = e.target.value
     onSearch(query)
@@ -19,12 +20,16 @@ export const Header = ({ onSearch }: HeaderProps) => {
   return (
     <header className="max-w-7xl w-full m-auto flex items-center justify-center lg:justify-between py-4 px-6">
       <div className="h-fit flex items-center">
-        <figure className="w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
+        <figure
+          className="w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer"
+          onClick={onReset}
+        >
           <Logo />
         </figure>
         <button
           className="hidden lg:block h-full py-3 px-5 bg-black text-white font-bold rounded-3xl"
           type="button"
+          onClick={onReset}
         >
           Home
         </button>
@@ -40,19 +45,31 @@ export const Header = ({ onSearch }: HeaderProps) => {
         />
       </div>
       <div className="hidden lg:flex items-center">
-        <button className="w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
+        <button className="NavIcon relative w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
           <NotificationIcon className="w-7 h-7 text-gray-500" />
+          <span className="NavIcon-info hidden absolute z-10 -bottom-10 -left-[16px] bg-black p-2 rounded-xl text-white text-xs">
+            Notifications
+          </span>
         </button>
-        <button className="w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
+        <button className="NavIcon relative w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
           <MessageIcon className="w-7 h-7 text-gray-500" />
+          <span className="NavIcon-info hidden absolute z-10 -bottom-10 -left-[8px] bg-black p-2 rounded-xl text-white text-xs">
+            Messages
+          </span>
         </button>
-        <button className="w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
+        <button className="NavIcon relative w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
           <span className="w-7 h-7 flex items-center justify-center text-xs bg-gray-200 rounded-full">
             T
           </span>
+          <span className="NavIcon-info hidden absolute z-10 -bottom-10 -left-[4px] bg-black p-2 rounded-xl text-white text-xs">
+            Account
+          </span>
         </button>
-        <button className="w-7 h-7 flex items-center justify-center hover:bg-gray-200 rounded-full cursor-pointer">
+        <button className="NavIcon relative w-7 h-7 flex items-center justify-center hover:bg-gray-200 rounded-full cursor-pointer">
           <Chevron className="w-4 h-4 text-gray-900 font-bold" />
+          <span className="NavIcon-info hidden absolute z-10 -bottom-[52px] -left-[30px] bg-black p-2 rounded-xl text-white text-xs">
+            Options
+          </span>
         </button>
       </div>
     </header>

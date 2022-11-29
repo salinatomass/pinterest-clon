@@ -1,3 +1,7 @@
 .card-image:hover .hidden {
   display: flex;
 }
+
+.NavIcon:hover .NavIcon-info {
+  display: block;
+}

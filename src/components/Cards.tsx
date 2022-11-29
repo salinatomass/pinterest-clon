@@ -17,7 +17,7 @@ export const Cards = ({ list, loading }: CardsProps) => {
   const loaders = [1, 2, 3, 4, 5, 6]
 
   return (
-    <main className="max-w-7xl w-screen m-auto grid grid-cols-5 gap-x-5 px-6">
+    <main className="max-w-7xl w-screen m-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-5 px-6">
       {list.length > 0 && (
         <>
           <div className="flex flex-col gap-7">
@@ -44,7 +44,7 @@ export const Cards = ({ list, loading }: CardsProps) => {
             ))}
             {loading && loaders.map(id => <LoadingCard key={id} />)}
           </div>
-          <div className="flex flex-col gap-7">
+          <div className="hidden lg:flex flex-col gap-7">
             {fifthColumnList.map(ph => (
               <Card key={ph.id} data={ph} />
             ))}

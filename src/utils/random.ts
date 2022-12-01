@@ -6,23 +6,17 @@ const queries = [
   'background',
   'people',
   'music',
-  'abstract',
   'design',
-  'horizon',
-  'animals',
-  'planet',
-  'food',
+  'nature',
+  'technology',
 ]
 const colors = [
-  '',
-  'yellow',
-  'green',
-  'turquoise',
-  'white',
   'black',
+  'turquoise',
+  'green',
+  'white',
   'gray',
   'violet',
-  'pink',
   'brown',
 ]
 const bgColors = [
@@ -36,10 +30,10 @@ const bgColors = [
 ]
 const heights = ['h-44', 'h-64', 'h-72', 'h-80', 'h-96']
 
-export const randomQuery = queries[randomNum(0, queries.length - 1)]
+export const randomQuery = () => queries[randomNum(0, queries.length - 1)]
 
-export const randomColor = colors[randomNum(0, colors.length - 1)]
+export const randomColor = () => colors[randomNum(0, colors.length - 1)]
 
-export const randomBgColor = bgColors[randomNum(0, colors.length - 1)]
+export const randomBgColor = () => bgColors[randomNum(0, colors.length - 1)]
 
-export const randomHeight = heights[randomNum(0, heights.length - 1)]
+export const randomHeight = () => heights[randomNum(0, heights.length - 1)]

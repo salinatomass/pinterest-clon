@@ -20,7 +20,7 @@ const DEFAULT_PER_PAGE = 30
 const initialPhotosState = {
   loading: true,
   list: [],
-  nextPage: `${API_URL}/search/?query=${randomQuery}&color=${randomColor}`,
+  nextPage: `${API_URL}/search/?query=${randomQuery()}&color=${randomColor()}`,
   error: '',
 }
 

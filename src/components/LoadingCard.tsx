@@ -12,8 +12,8 @@ export const LoadingCard = () => {
     'bg-gray-800',
   ]
 
-  const randomHeight = heights[randomNum(heights.length - 1, 0)]
-  const randomColor = colors[randomNum(colors.length - 1, 0)]
+  const randomHeight = heights[randomNum(0, heights.length - 1)]
+  const randomColor = colors[randomNum(0, colors.length - 1)]
 
   return (
     <article

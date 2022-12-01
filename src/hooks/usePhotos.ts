@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { getData } from '../utils/getData'
 import { errMessage } from '../utils/errMessage'
+import { randomNum } from '../utils/randomNum'
 
 import { PhotoApiResponse } from '../components/type'
 
@@ -16,10 +17,36 @@ const API_URL = 'https://api.pexels.com/v1'
 const API_KEY = '563492ad6f91700001000001f64483cd0ec24a9e97c1465937ec74ee'
 const DEFAULT_PER_PAGE = 30
 
+const queries = [
+  'background',
+  'people',
+  'music',
+  'abstract',
+  'design',
+  'horizon',
+  'animals',
+  'planet',
+]
+const colors = [
+  '',
+  'yellow',
+  'green',
+  'turquoise',
+  'white',
+  'black',
+  'gray',
+  'violet',
+  'pink',
+  'brown',
+]
+
+const randomQuery = queries[randomNum(0, queries.length - 1)]
+const randomColor = colors[randomNum(0, colors.length - 1)]
+
 const initialPhotosState = {
   loading: true,
   list: [],
-  nextPage: `${API_URL}/curated?`,
+  nextPage: `${API_URL}/search/?query=${randomQuery}&color=${randomColor}`,
   error: '',
 }
 

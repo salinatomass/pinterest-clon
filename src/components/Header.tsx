@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import { debounce } from 'lodash'
+import { Modal } from './Modal'
+
 import { Logo } from './Icons'
 
 import { BiSearch as SearchIcon } from 'react-icons/bi'
@@ -11,21 +14,28 @@ interface HeaderProps {
   onReset: () => void
 }
 
+interface ModalState {
+  isOpen: boolean
+  title: 'Contact' | 'Developer'
+}
+
 export const Header = ({ onSearch, onReset }: HeaderProps) => {
+  const [modal, setModal] = useState<ModalState>({
+    isOpen: false,
+    title: 'Contact',
+  })
+
   const handleSearch = debounce(e => {
     const query = e.target.value
     onSearch(query)
   }, 1500)
 
-  const handleNotifyStart = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.currentTarget.classList.add('notify')
+  const handleModal = (title: ModalState['title']) => {
+    setModal({ isOpen: true, title })
   }
 
-  const handleNotifyEnd = (e: React.AnimationEvent<HTMLButtonElement>) => {
-    e.currentTarget.classList.remove('notify')
-  }
+  const closeModal = () =>
+    setModal(prevState => ({ ...prevState, isOpen: false }))
 
   return (
     <header className="max-w-7xl w-full m-auto flex items-center justify-center lg:justify-between py-4 px-6">
@@ -57,26 +67,32 @@ export const Header = ({ onSearch, onReset }: HeaderProps) => {
       <div className="hidden lg:flex items-center">
         <button
           className="NavIcon NotificationBtn relative w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer"
-          onClick={handleNotifyStart}
-          onAnimationEnd={handleNotifyEnd}
+          onClick={e => e.currentTarget.classList.add('notify')}
+          onAnimationEnd={e => e.currentTarget.classList.remove('notify')}
         >
           <NotificationIcon className="w-7 h-7 text-gray-500" />
           <span className="NavIcon-info hidden absolute z-10 -bottom-10 -left-[16px] bg-black p-2 rounded-xl text-white text-xs">
             Notifications
           </span>
         </button>
-        <button className="NavIcon relative w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
+        <button
+          className="NavIcon relative w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer"
+          onClick={() => handleModal('Contact')}
+        >
           <MessageIcon className="w-7 h-7 text-gray-500" />
-          <span className="NavIcon-info hidden absolute z-10 -bottom-10 -left-[8px] bg-black p-2 rounded-xl text-white text-xs">
-            Messages
+          <span className="NavIcon-info hidden absolute z-10 -bottom-10 -left-[4px] bg-black p-2 rounded-xl text-white text-xs">
+            Contact
           </span>
         </button>
-        <button className="NavIcon relative w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
+        <button
+          className="NavIcon relative w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer"
+          onClick={() => handleModal('Developer')}
+        >
           <span className="w-7 h-7 flex items-center justify-center text-xs bg-gray-200 rounded-full">
             T
           </span>
-          <span className="NavIcon-info hidden absolute z-10 -bottom-10 -left-[4px] bg-black p-2 rounded-xl text-white text-xs">
-            Account
+          <span className="NavIcon-info hidden absolute z-10 -bottom-10 -left-[10px] bg-black p-2 rounded-xl text-white text-xs">
+            Developer
           </span>
         </button>
         <button className="NavIcon relative w-7 h-7 flex items-center justify-center hover:bg-gray-200 rounded-full cursor-pointer">
@@ -86,6 +102,7 @@ export const Header = ({ onSearch, onReset }: HeaderProps) => {
           </span>
         </button>
       </div>
+      <Modal open={modal.isOpen} title={modal.title} closeModal={closeModal} />
     </header>
   )
 }

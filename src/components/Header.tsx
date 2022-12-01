@@ -95,7 +95,10 @@ export const Header = ({ onSearch, onReset }: HeaderProps) => {
             Developer
           </span>
         </button>
-        <button className="NavIcon relative w-7 h-7 flex items-center justify-center hover:bg-gray-200 rounded-full cursor-pointer">
+        <button
+          className="NavIcon relative w-7 h-7 flex items-center justify-center hover:bg-gray-200 rounded-full cursor-pointer"
+          onClick={e => e.currentTarget.classList.toggle('turn')}
+        >
           <Chevron className="w-4 h-4 text-gray-900 font-bold" />
           <span className="NavIcon-info hidden absolute z-10 -bottom-[52px] -left-[30px] bg-black p-2 rounded-xl text-white text-xs">
             Options

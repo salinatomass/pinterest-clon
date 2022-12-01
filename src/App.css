@@ -8,7 +8,15 @@
   display: block;
 }
 
-.NotificationBtn.notify svg {
+header button svg {
+  transition: 300ms;
+}
+
+header button.turn svg {
+  transition: 300ms;
+  transform: rotate(180deg);
+}
+header button.notify svg {
   animation-name: bell;
   animation-duration: 1s;
   transform-origin: center top;

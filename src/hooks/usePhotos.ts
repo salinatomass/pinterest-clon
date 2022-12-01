@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { getData } from '../utils/getData'
+import { errMessage } from '../utils/errMessage'
 
 import { PhotoApiResponse } from '../components/type'
 
@@ -76,7 +77,14 @@ export const usePhotos = () => {
           loading: false,
           list: [],
           nextPage: initialPhotosState.nextPage,
-          error: "We couldn't find any Pins for this search.",
+          error: errMessage.notFound,
+        })
+      else if (data.photos.length < 30)
+        setPhotos({
+          loading: false,
+          list: data.photos,
+          nextPage: initialPhotosState.nextPage,
+          error: errMessage.notTooMany,
         })
       else
         setPhotos({

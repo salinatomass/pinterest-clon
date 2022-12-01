@@ -17,6 +17,16 @@ export const Header = ({ onSearch, onReset }: HeaderProps) => {
     onSearch(query)
   }, 1500)
 
+  const handleNotifyStart = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.currentTarget.classList.add('notify')
+  }
+
+  const handleNotifyEnd = (e: React.AnimationEvent<HTMLButtonElement>) => {
+    e.currentTarget.classList.remove('notify')
+  }
+
   return (
     <header className="max-w-7xl w-full m-auto flex items-center justify-center lg:justify-between py-4 px-6">
       <div className="h-fit flex items-center">
@@ -45,7 +55,11 @@ export const Header = ({ onSearch, onReset }: HeaderProps) => {
         />
       </div>
       <div className="hidden lg:flex items-center">
-        <button className="NavIcon relative w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer">
+        <button
+          className="NavIcon NotificationBtn relative w-fit p-3 hover:bg-gray-200 rounded-full cursor-pointer"
+          onClick={handleNotifyStart}
+          onAnimationEnd={handleNotifyEnd}
+        >
           <NotificationIcon className="w-7 h-7 text-gray-500" />
           <span className="NavIcon-info hidden absolute z-10 -bottom-10 -left-[16px] bg-black p-2 rounded-xl text-white text-xs">
             Notifications

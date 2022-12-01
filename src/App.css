@@ -1,7 +1,42 @@
-.card-image:hover .hidden {
+/* Card */
+.card-image:hover > .hidden {
   display: flex;
 }
 
+/* Navbar */
 .NavIcon:hover .NavIcon-info {
   display: block;
+}
+
+.NotificationBtn.notify svg {
+  animation-name: bell;
+  animation-duration: 1s;
+  transform-origin: center top;
+  animation-timing-function: ease-out;
+}
+@keyframes bell {
+  0% {
+    transform: rotate(21deg);
+  }
+  12.5% {
+    transform: rotate(-18deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  37.5% {
+    transform: rotate(-12deg);
+  }
+  50% {
+    transform: rotate(9deg);
+  }
+  62.5% {
+    transform: rotate(-6deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
 }

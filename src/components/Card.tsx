@@ -39,7 +39,7 @@ export const Card = ({ data }: CardProps) => {
 
         <div className="hidden absolute top-0 left-0 w-full h-full flex flex-col justify-between bg-black/[.7] rounded-xl text-white py-3 px-2 cursor-zoom-in">
           <a
-            href={data.src.original || data.src.medium}
+            href={data.src.large || data.src.medium}
             target="_blank"
             className="self-end w-fit h-fit py-3 px-5 bg-red-600 text-white font-bold rounded-3xl cursor-pointer"
           >

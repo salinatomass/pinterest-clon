@@ -4,6 +4,7 @@ export interface Photo {
   height: number
   src: {
     original: string
+    large: string
     medium: string
     small: string
   }

@@ -13,8 +13,8 @@ interface PhotosState {
   error: string
 }
 
-const API_URL = 'https://api.pexels.com/v1'
-const API_KEY = '563492ad6f91700001000001f64483cd0ec24a9e97c1465937ec74ee'
+const API_URL = import.meta.env.VITE_API_URL
+const API_KEY = import.meta.env.VITE_API_KEY
 const DEFAULT_PER_PAGE = 30
 
 const initialPhotosState = {
